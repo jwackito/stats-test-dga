@@ -12,6 +12,8 @@ Clone the repo, enter the scripts directory and run using python. You will need 
 ```
 The script creates a folder scripts/results/ with the results per set of experiments.
 
+The `inference(sample)` function predicts DGA and non-DGA randomly. In order to test YOUR DGA detector, you need to rewrite the `inference()` function. The function receives a Pandas DataFrame with two a columns, *domain* and *label* and returns the same DataFrame with an extra column called *pred* which contain the predicted labels `dga` or `nondga` for each domain in the DataFrame. Please respect this format so other tools can process the results easily.
+
 ## Why run the experiments this way?
 Do I need to run each experiment 30 times? Let's say you want to know the accuracy of your DGA detection model. You can't test your model against all the DGAs and known domains. So you use some few DGA and non-DGA domains and check if your model discriminate each domain correctly. You calculate the accuracy ((TP + TN)/(TP + TN + FP + FN)) and that's it, right? The problem with that is you didn't use the total population but a sample of it. Thus, the accuracy of your model will have a probability distribution you don't know, with a mean (μ) and standard deviation (σ) that you also don't know. Thus the accuracy you calculated can be near the real μ or very far off if the σ is big.
 
